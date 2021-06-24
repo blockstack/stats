@@ -3,14 +3,17 @@
   "private": true,
   "prettier": "@blockstack/prettier-config",
   "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean -y && lerna exec -- rm -rf ./node_modules ./dist",
     "typecheck": "lerna run typecheck --parallel --stream",
     "dev:watch": "lerna run dev:watch --parallel --stream",
+    "build": "lerna run build",
     "build:client": "lerna run build --scope @blockstack/stats",
+    "build:docker": "docker build --tag myc-stats:1.0 .",
     "lint": "yarn lint:eslint",
     "lint:eslint": "eslint --ext .ts,.tsx,.js . -f unix",
     "lint:fix": "eslint --ext .ts,.tsx,.js . -f unix --fix",
-    "prod:server": "lerna run prod --scope @blockstack/stats-server --stream",
-    "version": "lerna bootstrap"
+    "start:server": "lerna run prod --scope @blockstack/stats-server --stream"
   },
   "devDependencies": {
     "@blockstack/prettier-config": "^0.0.5",

@@ -4,6 +4,37 @@
 
 Blockstack Stats is a client/server framework for convient, privacy-preserving analytics.
 
+## TLDR;
+
+To get started:
+
+### Use Docker
+
+1. build the image
+
+```sh
+  yarn build:docker
+```
+
+2. launch the container
+
+```sh
+  docker run --publish 5555:5555 --detach --name stats s:1.0
+```
+
+### Use custom server
+
+Configure your node server, clone and run:
+
+```sh
+  yarn
+  yarn bootstrap
+  yarn build
+  yarn start:server
+```
+
+---
+
 <!-- TOC depthFrom:2 -->
 
 - [The Why](#the-why)
@@ -81,9 +112,9 @@ setConfig({
   providers: [
     {
       name: 'segment',
-      writeKey: 'your-segment-write-key'
-    }
-  ]
+      writeKey: 'your-segment-write-key',
+    },
+  ],
 });
 ```
 
@@ -97,7 +128,7 @@ import { event } from '@blockstack/stats';
 const eventName = 'clicked_login';
 event({
   name: eventName,
-})
+});
 
 // You can also pass any properties with events:
 
@@ -118,8 +149,8 @@ Call this method for every page load. Or, in a single-page-app, call this method
 
 ```javascript
 page({
-  name: 'Home Page'
-})
+  name: 'Home Page',
+});
 ```
 
 ## Providers
@@ -139,10 +170,10 @@ setConfig({
   providers: [
     {
       name: 'segment',
-      writeKey: 'your-segment-write-key'
-    }
-  ]
-})
+      writeKey: 'your-segment-write-key',
+    },
+  ],
+});
 ```
 
 ## Development

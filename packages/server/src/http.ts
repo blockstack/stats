@@ -7,8 +7,9 @@ import cors from 'cors';
 import { exportToProviders } from './utils';
 
 const app = express();
-app.use(bodyParser.json());
+// @ts-expect-error: cors typings
 app.use(cors());
+app.use(bodyParser.json());
 
 app.post('/api/event', async (req: Request, res: Response) => {
   const runOptions: RunOptions = req.body;
@@ -28,7 +29,7 @@ app.post('/api/event', async (req: Request, res: Response) => {
 
 const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 5555;
 
-app.listen(port, err => {
+app.listen(port, (err: any) => {
   if (err) {
     return console.error(err);
   }
